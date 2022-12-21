@@ -1,6 +1,7 @@
 ﻿using FreeStaticPages.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using FreeStaticPages.Services;
 
 namespace FreeStaticPages.Controllers
 {
@@ -15,7 +16,19 @@ namespace FreeStaticPages.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            ViewResult view = View();
+
+            // inside of a Controller method
+            // string confirmation = await Helper.RenderViewToStringAsync(
+            //     "Index",
+            //     new Object(),
+            //     ControllerContext
+            // );
+
+
+            // Console.Write(confirmation);
+
+            return view;
         }
 
         public IActionResult Privacy()
@@ -26,7 +39,12 @@ namespace FreeStaticPages.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(
+                new ErrorViewModel
+                {
+                    RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+                }
+            );
         }
     }
 }
