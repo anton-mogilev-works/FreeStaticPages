@@ -1,0 +1,69 @@
+<!doctype html>
+<!-- 
+* Bootstrap Simple Admin Template
+* Version: 2.1
+* Author: Alexis Luna
+* Website: https://github.com/alexis-luna/bootstrap-simple-admin-template
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dashboard | Bootstrap Simple Admin Template</title>
+    <link href="~/wwwrootadmin/vendor/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+    <link href="~/wwwrootadmin/vendor/fontawesome/css/solid.min.css" rel="stylesheet">
+    <link href="~/wwwrootadmin/vendor/fontawesome/css/brands.min.css" rel="stylesheet">
+    <link href="~/wwwrootadmin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/wwwrootadmin/css/master.css" rel="stylesheet">
+    <link href="~/wwwrootadmin/vendor/flagiconcss/css/flag-icon.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav id="sidebar" >
+            <div class="sidebar-header">
+                <img src="~/wwwrootadmin/img/bootstraper-logo.png" alt="bootraper logo" class="app-logo">
+            </div>
+            <ul class="list-unstyled components text-secondary">
+                <li>
+                    <a asp-area="" asp-controller="Admin" asp-action="Pages"><i class="fas fa-copy"></i>Страницы</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-list-ul"></i>Каталог</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-list-ul"></i>Настройки</a>
+                </li>                
+                
+            </ul>
+        </nav>
+        <div id="body" class="active">
+            <!-- navbar navigation component -->
+            <nav class="navbar navbar-expand-lg navbar-white bg-white">
+                @* <button type="button" id="sidebarCollapse" class="btn btn-light">
+                    <i class="fas fa-bars"></i><span></span>
+                </button> *@
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ms-auto">
+                        
+                    </ul>
+                </div>
+            </nav>
+            <!-- end of navbar navigation -->
+            <div class="content">
+                <div class="container">                    
+                    
+                    @RenderBody()
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/wwwrootadmin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/wwwrootadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/wwwrootadmin/js/script.js"></script>
+</body>
+
+</html>
