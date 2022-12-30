@@ -8,7 +8,7 @@ namespace FreeStaticPages.Controllers
         ApplicationContext dbContext;
         public AdminController(ApplicationContext context)
         {
-            this.dbContext = context;            
+            this.dbContext = context;
         }
 
         public ViewResult Index()
@@ -19,7 +19,23 @@ namespace FreeStaticPages.Controllers
         [HttpGet]
         public ViewResult Pages()
         {
-            List<StaticPageModel> staticPages = dbContext.StaticPages.ToList<StaticPageModel>();
+            List<StaticPage> staticPages = dbContext.StaticPages.ToList<StaticPage>();
+
+            if (staticPages.Count > 0)
+            {
+                foreach (StaticPage page in staticPages)
+                {
+                    if (page.Link is not null)
+                    {
+                        Console.WriteLine(page.Link.Path);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Link is null");
+                    }
+                }
+            }
+
             return View(staticPages);
         }
 
@@ -30,12 +46,11 @@ namespace FreeStaticPages.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddPage(StaticPageModel page)
-        {            
+        public IActionResult AddPage(StaticPage page)
+        {
             dbContext.StaticPages.Add(page);
             dbContext.SaveChangesAsync();
             return RedirectToAction("Pages");
         }
-        
     }
 }

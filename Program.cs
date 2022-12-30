@@ -36,6 +36,10 @@ app.UseRouting();
 // app.UseAuthorization();
 
 app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+// app.MapControllerRoute(name: "default", pattern: "{path?}.html");
+
+// app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{path?}");
+// app.MapControllerRoute(name: "static_page", pattern: "{controller=Home}/{action=ShowPage}/{name}/{age}");
 
 
 app.Run();

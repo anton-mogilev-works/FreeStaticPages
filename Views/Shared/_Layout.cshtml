@@ -18,14 +18,20 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    
+                    @if(ViewBag.StaticPagesHrefs is not null && ViewBag.StaticPagesHrefs.Count > 0)
+                    {                        
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        @foreach(Href pg in ViewBag.StaticPagesHrefs)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="/@pg.Path">@pg.Caption</a>
+                            </li>
+                        }
+                        
                     </ul>
+                    }
+                    
                 </div>
             </div>
         </nav>

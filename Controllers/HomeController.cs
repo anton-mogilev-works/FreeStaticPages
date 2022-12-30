@@ -2,33 +2,37 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using FreeStaticPages.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace FreeStaticPages.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        ApplicationContext dbContext;
+        List<Href> StaticPagesHrefs { get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationContext context)
         {
             _logger = logger;
+            this.dbContext = context;
+            StaticPagesHrefs = Helper.GetStaticPagesHrefs(dbContext);            
+            
         }
 
         public IActionResult Index()
         {
-            ViewResult view = View();
-
-            // inside of a Controller method
-            // string confirmation = await Helper.RenderViewToStringAsync(
-            //     "Index",
-            //     new Object(),
-            //     ControllerContext
-            // );
-
-
-            // Console.Write(confirmation);
-
-            return view;
+            ViewBag.StaticPagesHrefs = StaticPagesHrefs;            
+            return View();
+        }
+        
+        [Route("{path}.html")]
+        [HttpGet]
+        public IActionResult StaticPage(string path)
+        {
+            ViewBag.StaticPagesHrefs = StaticPagesHrefs;
+            ViewBag.StaticPage = dbContext.StaticPages.Include(p => p.Link).Where(p => p.Link.Path == path).First();
+            return View();
         }
 
         public IActionResult Privacy()

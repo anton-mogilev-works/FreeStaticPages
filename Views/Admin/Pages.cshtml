@@ -1,4 +1,4 @@
-@model List<StaticPageModel>
+@model List<StaticPage>
 
 <div class="page-title">
     <h3>Страницы
@@ -15,16 +15,18 @@
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>                    
+                    <th>Название</th>
+                    <th>Ссылка</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach(StaticPageModel staticPage in Model)
+                @foreach(StaticPage staticPage in Model)
                 {
                     <tr>
                         <td>@staticPage.Id</td>
-                        <td>@staticPage.Name</td>                        
+                        <td>@staticPage.Name</td>
+                        <td><a href="/@staticPage.Link.Path".html>@staticPage.Link.Path</a></td>
                         <td class="text-end">
                             <a href="" class="btn btn-outline-info btn-rounded"><i class="fas fa-pen"></i></a>
                             <a href="" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i></a>

@@ -1,4 +1,4 @@
-@model FreeStaticPages.Models.StaticPageModel
+@model FreeStaticPages.Models.StaticPage
 
 <div class="page-title">
     <h3>Добавить страницу</h3>
@@ -12,6 +12,10 @@
                     <label for="site-title" class="form-label">Название страницы:</label>
                     <input type="text" asp-for="Name" class="form-control">
                 </div>
+                <div class="mb-3">
+                    <label for="site-title" class="form-label">Ссылка:</label>
+                    <input type="text" asp-for="Link.Path" class="form-control">
+                </div>                
                 <div class="mb-3">
                     <label class="form-label">Файлы изображений</label>
                     <input class="form-control" name="site_logo" type="file" id="formFile1">
