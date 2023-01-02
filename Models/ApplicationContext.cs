@@ -16,21 +16,19 @@ namespace FreeStaticPages.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<StaticPage>(
-                builder =>
-                {
-                    builder.HasKey(x => x.Id);
-
-                    builder.OwnsOne(x => x.Link);
-                    builder.Navigation(x => x.Link).IsRequired();
-                }
-            );
+            // modelBuilder.Entity<StaticPage>(
+            //     builder =>
+            //     {
+            //         builder.HasKey(x => x.Id);
+            //         builder.OwnsOne(x => x.Link);
+            //         builder.Navigation(x => x.Link).IsRequired();
+            //     }
+            // );
 
             // modelBuilder.Entity<Category>(
             //     builder =>
             //     {
             //         builder.HasKey(x => x.Id);
-
             //         builder.OwnsOne(x => x.Link);
             //         builder.Navigation(x => x.Link).IsRequired();
             //     }
@@ -40,15 +38,14 @@ namespace FreeStaticPages.Models
             //     builder =>
             //     {
             //         builder.HasKey(x => x.Id);
-
             //         builder.OwnsOne(x => x.Link);
             //         builder.Navigation(x => x.Link).IsRequired();
             //     }
             // );
 
-            // modelBuilder
-            //     .Entity<StaticPage>()
-            //     .HasData(new StaticPage { Id = 1, Link = new Link() { Path = "Index"}, Name = "Главная страница", Content = "Главная страница вашего сайта" });
+            modelBuilder
+                .Entity<StaticPage>()
+                .HasData(new StaticPage { Id = 1, Link = new Link() { Path = "Index"}, Name = "Главная страница", Content = "Главная страница вашего сайта" });
 
             base.OnModelCreating(modelBuilder);
         }

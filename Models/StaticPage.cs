@@ -3,7 +3,7 @@ namespace FreeStaticPages.Models
     public class StaticPage
     {
         public int Id { get; set; }
-        public Link? Link { get; set; }
+        public Link? Link { get; set; } = new Link();
         public string? Name { get; set; } = string.Empty;
         public string? Content { get; set; } = string.Empty;
         public List<Image>? Images { get; set; } = new List<Image>();
