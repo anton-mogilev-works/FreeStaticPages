@@ -1,0 +1,22 @@
+@model FreeStaticPages.Models.Category
+
+<div class="page-title">
+    <h3>Категорию каталога</h3>
+</div>
+
+<div class="box box-primary">
+    <div class="box-body">
+        <div class="col-md-6">
+            <form asp-action="AddPage" asp-controller="Admin">
+                <p class="text">Заполните поле для создания категории.</p>
+                <div class="mb-3">
+                    <label for="site-title" class="form-label">Название категории:</label>
+                    <input type="text" asp-for="Name" class="form-control" />
+                </div>                
+                <div class="mb-3 text-end">
+                    <button class="btn btn-success" type="submit"><i class="fas fa-check"></i> Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

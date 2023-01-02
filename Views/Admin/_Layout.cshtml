@@ -31,11 +31,15 @@
                     <a asp-area="" asp-controller="Admin" asp-action="Pages"><i class="fas fa-copy"></i>Страницы</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fas fa-list-ul"></i>Каталог</a>
+                    <a asp-controller="Admin" asp-action="Catalog"><i class="fas fa-list-ul"></i>Каталог</a>
                 </li>
+                
                 <li>
                     <a href="#"><i class="fas fa-list-ul"></i>Настройки</a>
-                </li>                
+                </li>
+                <li>
+                    <a hasp-controller="Admin" asp-action="GenerateStaticSite"><i class="fas fa-list-ul"></i>Генерация статического сайта</a>
+                </li>
                 
             </ul>
         </nav>

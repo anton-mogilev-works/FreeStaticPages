@@ -19,22 +19,7 @@ namespace FreeStaticPages.Controllers
         [HttpGet]
         public ViewResult Pages()
         {
-            List<StaticPage> staticPages = dbContext.StaticPages.ToList<StaticPage>();
-
-            if (staticPages.Count > 0)
-            {
-                foreach (StaticPage page in staticPages)
-                {
-                    if (page.Link is not null)
-                    {
-                        Console.WriteLine(page.Link.Path);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Link is null");
-                    }
-                }
-            }
+            List<StaticPage> staticPages = dbContext.StaticPages.ToList<StaticPage>();           
 
             return View(staticPages);
         }
@@ -51,6 +36,18 @@ namespace FreeStaticPages.Controllers
             dbContext.StaticPages.Add(page);
             dbContext.SaveChangesAsync();
             return RedirectToAction("Pages");
+        }
+
+        [HttpGet]
+        public ViewResult Catalog()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ViewResult AddCategory()
+        {
+            return View();
         }
     }
 }

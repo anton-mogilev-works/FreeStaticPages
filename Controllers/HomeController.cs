@@ -16,13 +16,14 @@ namespace FreeStaticPages.Controllers
         {
             _logger = logger;
             this.dbContext = context;
-            StaticPagesHrefs = Helper.GetStaticPagesHrefs(dbContext);            
-            
+            StaticPagesHrefs = Helper.GetStaticPagesHrefs(dbContext);
+
         }
 
         public IActionResult Index()
         {
-            ViewBag.StaticPagesHrefs = StaticPagesHrefs;            
+            ViewBag.StaticPagesHrefs = StaticPagesHrefs;   
+                  
             return View();
         }
         
