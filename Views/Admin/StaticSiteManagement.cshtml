@@ -1,0 +1,20 @@
+<div class="page-title">
+    <h3>Управление статическим сайтом</h3>
+</div>
+
+<div class="box box-primary">
+    <div class="box-body">
+        <div class="col-md-6">
+            <form asp-action="MakeStaticSite" asp-controller="Admin">
+                <p class="text">Заполните поле для создания статического сайта.</p>
+                <div class="mb-3">
+                    <label for="site-title" class="form-label">Имя каталога:</label>
+                    <input type="text" value="StaticSite" name="folderName" class="form-control" />
+                </div>                
+                <div class="mb-3 text-end">
+                    <button class="btn btn-success" type="submit"><i class="fas fa-check"></i> Создать</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
