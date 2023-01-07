@@ -363,3 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 
 *.sqlite3*
+
+StaticSite

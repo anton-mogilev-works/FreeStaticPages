@@ -5,7 +5,6 @@ using FreeStaticPages.Models;
 using Microsoft.Extensions.Configuration;
 using FreeStaticPages.Services;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -41,7 +40,12 @@ app.UseRouting();
 // app.UseAuthorization();
 app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 
+Helper.url = Environment.GetEnvironmentVariable("ASPNETCORE_URLS").Split(";")[0];
 
+Console.WriteLine(Helper.url);
+
+
+// Add init main page
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
@@ -59,6 +63,5 @@ using (var scope = app.Services.CreateScope())
         dbContext.SaveChanges();
     }
 }
-
 
 app.Run();

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using FreeStaticPages.Models;
+using FreeStaticPages.Services;
 
 namespace FreeStaticPages.Controllers
 {
@@ -48,6 +49,24 @@ namespace FreeStaticPages.Controllers
         public ViewResult AddCategory()
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult StaticSiteManagement()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult MakeStaticSite(string folderName)
+        {
+            if(!Directory.Exists(folderName))
+            {
+                Directory.CreateDirectory(folderName);
+            }
+
+            Helper.BuildStaticSiteAsync(folderName, dbContext);
+            return RedirectToAction("Index");
         }
     }
 }
