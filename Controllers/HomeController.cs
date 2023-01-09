@@ -22,9 +22,10 @@ namespace FreeStaticPages.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.StaticPagesHrefs = StaticPagesHrefs;   
+            // ViewBag.StaticPagesHrefs = StaticPagesHrefs;   
                   
-            return View();
+            // return View();
+            return Redirect("index.html");
         }
         
         [Route("{path}.html")]

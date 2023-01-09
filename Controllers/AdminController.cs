@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using FreeStaticPages.Models;
 using FreeStaticPages.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace FreeStaticPages.Controllers
 {
@@ -20,7 +21,7 @@ namespace FreeStaticPages.Controllers
         [HttpGet]
         public ViewResult Pages()
         {
-            List<StaticPage> staticPages = dbContext.StaticPages.ToList<StaticPage>();           
+            List<StaticPage> staticPages = dbContext.StaticPages.Include(p => p.Link).ToList<StaticPage>();           
 
             return View(staticPages);
         }
@@ -35,19 +36,35 @@ namespace FreeStaticPages.Controllers
         public IActionResult AddPage(StaticPage page)
         {
             dbContext.StaticPages.Add(page);
-            dbContext.SaveChangesAsync();
+            dbContext.SaveChanges();
             return RedirectToAction("Pages");
         }
 
         [HttpGet]
         public ViewResult Catalog()
         {
+            ViewBag.Categories = dbContext.Categories.Include(p => p.Link).ToList();            
             return View();
         }
 
         [HttpGet]
         public ViewResult AddCategory()
         {
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult AddCategory(Category category)
+        {
+            dbContext.Categories.Add(category);
+            dbContext.SaveChanges();
+            return Redirect("Catalog");
+        }
+
+        [HttpGet]
+        public ViewResult ShowCategory(int id)        
+        {
+            
             return View();
         }
 
@@ -58,14 +75,14 @@ namespace FreeStaticPages.Controllers
         }
 
         [HttpPost]
-        public IActionResult MakeStaticSite(string folderName)
+        public async Task<IActionResult> MakeStaticSiteAsync(string folderName)
         {
             if(!Directory.Exists(folderName))
             {
                 Directory.CreateDirectory(folderName);
             }
 
-            Helper.BuildStaticSiteAsync(folderName, dbContext);
+            await Helper.BuildStaticSiteAsync(folderName, dbContext);
             return RedirectToAction("Index");
         }
     }

@@ -28,7 +28,7 @@ namespace FreeStaticPages.Models
                 builder =>
                 {
                     builder.HasKey(x => x.Id);
-                    builder.Navigation(x => x.Link);
+                    builder.Navigation(x => x.Link);                    
                 }
             );
 

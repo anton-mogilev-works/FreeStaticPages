@@ -4,12 +4,23 @@ using Microsoft.EntityFrameworkCore;
 using FreeStaticPages.Models;
 using Microsoft.Extensions.Configuration;
 using FreeStaticPages.Services;
+using Microsoft.Extensions.WebEncoders;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 string? connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlite(connection));
+
+
+builder.Services.Configure<WebEncoderOptions>(
+    options =>
+    {
+        options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.All);
+    }
+);
 
 
 // Add services to the container.
@@ -42,9 +53,6 @@ app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Inde
 
 Helper.url = Environment.GetEnvironmentVariable("ASPNETCORE_URLS").Split(";")[0];
 
-Console.WriteLine(Helper.url);
-
-
 // Add init main page
 using (var scope = app.Services.CreateScope())
 {
@@ -56,12 +64,14 @@ using (var scope = app.Services.CreateScope())
             new StaticPage()
             {
                 Name = "Главная страница",
-                Content = "Ваша главная страница",
-                Link = new Link() { Path = "Index" }
+                Content =
+                    "Ваша главная страница <p>Перейдите по адресу <a href=\"/Admin\">/Admin</a> для управления сайтом",
+                Link = new Link() { Path = "index" }
             }
         );
         dbContext.SaveChanges();
     }
 }
+
 
 app.Run();
