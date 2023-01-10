@@ -1,0 +1,38 @@
+@model FreeStaticPages.Models.Item
+
+<div class="page-title">
+    <h3>Добавить товар в категорию</h3>
+</div>
+<div class="box box-primary">
+    <div class="box-body">
+        <div class="col-md-6">
+            <form asp-action="AddItem" asp-controller="Admin">
+                <p class="text">Заполните необходимые поля для создания товара</p>
+                <div class="mb-3">
+                    <label for="site-title" class="form-label">Название товара:</label>
+                    <input type="text" asp-for="Name" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label for="site-title" class="form-label">Ссылка:</label>
+                    <input type="text" asp-for="Link.Path" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Файлы изображений</label>
+                    <input class="form-control" name="site_logo" type="file" id="formFile1">
+                    @* <small class="text-muted">The image must have a maximum size of 1MB</small> *@
+                </div>
+                <div class="mb-3">
+                    <label for="site-description" class="form-label">Описание:</label>
+                    <textarea class="form-control" rows="10" asp-for="Description"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="site-description" class="form-label">Описание:</label>
+                    <textarea class="form-control" rows="10" asp-for="Description"></textarea>
+                </div>
+                <div class="mb-3 text-end">
+                    <button class="btn btn-success" type="submit"><i class="fas fa-check"></i> Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

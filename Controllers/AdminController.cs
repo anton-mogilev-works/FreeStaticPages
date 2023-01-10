@@ -64,7 +64,13 @@ namespace FreeStaticPages.Controllers
         [HttpGet]
         public ViewResult ShowCategory(int id)        
         {
-            
+            ViewBag.Category = dbContext.Categories.Where(c => c.Id == id).First<Category>();
+            return View();
+        }
+
+        [HttpGet]
+        public ViewResult AddItem()
+        {
             return View();
         }
 

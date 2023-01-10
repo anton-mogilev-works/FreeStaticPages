@@ -6,6 +6,7 @@ namespace FreeStaticPages.Models
         public Category? Category { get; set; }
         public string? Name {get; set; }
         public Link? Link { get; set; } = new Link();
+        public decimal Price { get; set; } = decimal.MinValue;
         public string? Description { get; set; }
 
     }
