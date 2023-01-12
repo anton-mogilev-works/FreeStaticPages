@@ -24,11 +24,20 @@ namespace FreeStaticPages.Models
                 }
             );
 
+            modelBuilder.Entity<Image>(
+                builder =>
+                {
+                    builder.HasKey(x => x.Id);
+                    builder.Navigation(x => x.Link);
+                }
+            );
+
             modelBuilder.Entity<StaticPage>(
                 builder =>
                 {
                     builder.HasKey(x => x.Id);
-                    builder.Navigation(x => x.Link);                    
+                    builder.Navigation(x => x.Link);
+                    builder.Navigation(x => x.Images);
                 }
             );
 
@@ -45,6 +54,7 @@ namespace FreeStaticPages.Models
                 {
                     builder.HasKey(x => x.Id);
                     builder.Navigation(x => x.Link);
+                    builder.Navigation(x => x.Images);
                 }
             );
 
