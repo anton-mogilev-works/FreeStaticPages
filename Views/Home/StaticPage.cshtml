@@ -4,5 +4,10 @@
 
 <div class="text">
     <h1 class="display-4">@ViewBag.StaticPage.Name</h1>
+    @if(ViewBag.StaticPage.Images is not null && ViewBag.StaticPage.Images.Count > 0)
+    {
+        <img src="@ViewBag.StaticPage.Images[0].Link.Path" />
+    }    
+    <br>
     <p>@Html.Raw(@ViewBag.StaticPage.Content)</p>
 </div>

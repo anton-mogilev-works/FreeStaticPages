@@ -32,7 +32,12 @@ namespace FreeStaticPages.Services
                     using (WebClient client = new WebClient())
                     {
                         string page = client.DownloadString(address);
-                        using (StreamWriter writer = new StreamWriter(folder + "/" + link.Path + ".html", false))
+                        using (
+                            StreamWriter writer = new StreamWriter(
+                                folder + "/" + link.Path + ".html",
+                                false
+                            )
+                        )
                         {
                             await writer.WriteLineAsync(page);
                         }
@@ -93,6 +98,15 @@ namespace FreeStaticPages.Services
                 .ToList();
 
             return staticPages;
+        }
+
+        public static List<Href> GetCatalogCategoriesHrefs(ApplicationContext context)
+        {
+            var catalogCategoriesHrefs = context.Categories
+                .Select(c => new Href() { Caption = c.Name, Path = "catalog/" + c.Link.Path + "/index.html" })
+                .ToList();
+
+            return catalogCategoriesHrefs;
         }
     }
 }
